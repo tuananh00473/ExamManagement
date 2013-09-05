@@ -1,0 +1,57 @@
+-- Sequence: question_id_seq
+
+--DROP SEQUENCE question_id_seq;
+
+CREATE SEQUENCE question_id_seq
+INCREMENT 1
+MINVALUE 1
+MAXVALUE 9223372036854775807
+START 1
+CACHE 1;
+ALTER TABLE question_id_seq
+OWNER TO admin;
+
+-- Table: question
+--DROP TABLE question CASCADE ;
+
+CREATE TABLE question
+(
+  id          		BIGINT PRIMARY KEY     NOT NULL DEFAULT nextval('question_id_seq'),
+  question_type        	CHARACTER VARYING(255),
+  question_content     	TEXT
+)
+WITH (
+OIDS = FALSE
+);
+ALTER TABLE question
+OWNER TO admin;
+
+-- Sequence: answer_id_seq
+
+-- DROP SEQUENCE answer_id_seq;
+
+CREATE SEQUENCE answer_id_seq
+INCREMENT 1
+MINVALUE 1
+MAXVALUE 9223372036854775807
+START 1
+CACHE 1;
+ALTER TABLE answer_id_seq
+OWNER TO admin;
+
+-- Table: answer
+
+--DROP TABLE answer;
+
+CREATE TABLE answer
+(
+  id                	BIGINT PRIMARY KEY     NOT NULL DEFAULT nextval('answer_id_seq'),
+  question_id    	BIGINT                 NOT NULL REFERENCES question (id) ON DELETE CASCADE,
+  answer_correct     	BOOLEAN,
+  answer_content     	TEXT
+)
+WITH (
+OIDS = FALSE
+);
+ALTER TABLE answer
+OWNER TO admin;

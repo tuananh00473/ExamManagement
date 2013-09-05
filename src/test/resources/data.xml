@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <QUESTION id='1' question_type='checkbox' question_content='question 01'/>
+    <QUESTION id='2' question_type='radio' question_content='question 02'/>
+</dataset>
